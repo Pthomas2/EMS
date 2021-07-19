@@ -31,6 +31,10 @@ public class EmployeeManagementSystem {
 					break;
 				case 4: deleteEmployee();
 					break;
+				case 5: listDepartments();
+					break;
+				case 6: listEmployeesFromASpecificDepartment();
+					break;
 				case 7: taskLists();
 					break;
 				default:
@@ -49,7 +53,7 @@ public class EmployeeManagementSystem {
 		System.out.println("If you would like to read out current employees. Please enter the int 3.");
 		System.out.println("If you would like to delete a current employee. Please enter the int 4.");
 		System.out.println("If you would like to read out current departments. Please enter the int 5.");
-		System.out.println("If you would like to list employees from a specific. Please enter the int 4.");
+		System.out.println("If you would like to list employees from a specific. Please enter the int 6.");
 		System.out.println("If you would like to end this interaction. Please enter 0.");
 	}
 	
@@ -61,13 +65,13 @@ public class EmployeeManagementSystem {
 	public static void addEmployee() {
 		System.out.println("Enter an input for an Employee Name");
 		Employee employee = new Employee(null, 0, null);
-		String input = scanner.nextLine();
+		String input = scanner.next();
 		employee.setName(input);
 		System.out.println("Enter an input for Employee Salary");
 		int input2 = scanner.nextInt();
 		employee.setSalary(input2);
 		System.out.println("Enter an input for Employee Department");
-		String input3 = scanner.nextLine();
+		String input3 = scanner.next();
 		employee.setDepartment(input3);
 		System.out.println("Employee " + employee.getName() +" was created!");
 		employees.add(employee);
@@ -88,7 +92,7 @@ public class EmployeeManagementSystem {
 	}
 	
 	public static void updateEmployee() {
-		System.err.println("Please enter the ID of the employee you are trying to update");
+		System.out.println("Please enter the ID of the employee you are trying to update");
 		
 		int q = scanner.nextInt();
 		
@@ -99,32 +103,37 @@ public class EmployeeManagementSystem {
 				currentEmployee = e;
 			}
 		}
+		if(currentEmployee == null) {
+			System.err.println("Not a valid Employee");
+			return;
+		}
 		
 		System.out.println("What would you like to update. Enter 1 for name, 2 for department or 3 for salary.");
 		int y = scanner.nextInt();
 		if(y==1) {
 			System.out.println("Please enter the new name");
+			String newName = scanner.next();
 			if(currentEmployee != null) {
-				currentEmployee.setName(scanner.next());
+				currentEmployee.setName(newName);
 				}
 		}
 		else if(y==2) {
 			System.out.println("Please enter the new department");
+			String newDepartment = scanner.next();
 			if(currentEmployee != null) {
-				currentEmployee.setDepartment(scanner.next());
+				currentEmployee.setDepartment(newDepartment);
 				}
 		}
 		else if(y==3) {
 			System.out.println("Please enter the new salary");
+			int newSalary = scanner.nextInt();
 			if(currentEmployee != null) {
-				currentEmployee.setSalary(scanner.nextInt());
+				currentEmployee.setSalary(newSalary);
 				}
 		}
 		else {
 			System.out.println("You didn't enter a valid option. Please start over!");
 		}
-		
-		
 		
 	}
 	
@@ -132,8 +141,12 @@ public class EmployeeManagementSystem {
 		
 	}
 	
-	
-	
+	public static void listDepartments() {
+			
+		}
+	public static void listEmployeesFromASpecificDepartment() {
+		
+	}
 	
 	
 	
