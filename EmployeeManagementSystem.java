@@ -22,8 +22,8 @@ public class EmployeeManagementSystem {
 			
 			while(x != 0) {
 try {
-	BufferedWriter bw = new BufferedWriter(new FileWriter("./Resources/employees.txt"));
-	BufferedReader br = new BufferedReader(new FileReader("./Resources/employees.txt"));
+	BufferedWriter bw = new BufferedWriter(new FileWriter("./resources/employees.txt"));
+	BufferedReader br = new BufferedReader(new FileReader("./resources/employees.txt"));
 	for(Employee e: employees) {
 		bw.write(e.toString() + "\n");
 	}
