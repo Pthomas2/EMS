@@ -1,15 +1,15 @@
 package com.cognixia.jump.intermediateJava.javaFinalProject;
 
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
-//import com.cognixia.jump.intermediateJava.javaFinalProject.WriteFile;
-
 
 public class EmployeeManagementSystem {
 	static ArrayList <Employee> employees = new ArrayList<Employee>();
+	static ArrayList <String> departments = new ArrayList<String>();
 	static Scanner scanner = new Scanner(System.in);
 	static int x  = 0;
 	public static void main(String[] args) {
@@ -21,6 +21,21 @@ public class EmployeeManagementSystem {
 			x = scanner.nextInt();
 			
 			while(x != 0) {
+try {
+	BufferedWriter bw = new BufferedWriter(new FileWriter("./Resources/employees.txt"));
+	BufferedReader br = new BufferedReader(new FileReader("./Resources/employees.txt"));
+	for(Employee e: employees) {
+		bw.write(e.toString() + "\n");
+	}
+	String s;
+	while((s = br.readLine()) != null) {
+		Employee employee = new Employee(s);
+		employees.add(employee);
+	};
+	
+}catch(Exception e) {
+	return;
+}
 				
 				switch(x) {
 				case 1: addEmployee();
@@ -44,7 +59,8 @@ public class EmployeeManagementSystem {
 				setNextTask();
 			}
 			System.out.println("Have a nice day!");
-	}
+			scanner.close();
+		}
 	
 	
 	public static void taskLists() {
@@ -75,6 +91,7 @@ public class EmployeeManagementSystem {
 		employee.setDepartment(input3);
 		System.out.println("Employee " + employee.getName() +" was created!");
 		employees.add(employee);
+		
 	}
 	
 	public static void deleteEmployee() {
@@ -82,6 +99,7 @@ public class EmployeeManagementSystem {
 		try {
 			for(Employee e: employees) {
 				if(e.getId() == scanner.nextInt()) {
+					System.out.println("Employee "+ e.getName() + " has been deleted");
 					employees.remove(e);
 				}
 			}
@@ -132,30 +150,24 @@ public class EmployeeManagementSystem {
 				}
 		}
 		else {
-			System.out.println("You didn't enter a valid option. Please start over!");
+			System.err.println("You didn't enter a valid option. Please start over!");
 		}
 		
 	}
 	
 	public static void readEmployee() {
-		
+		System.out.println(employees);
 	}
 	
 	public static void listDepartments() {
-			
+			System.out.println(departments);
 		}
 	public static void listEmployeesFromASpecificDepartment() {
-		
+		System.out.println("Enter the department you would like to list");
+		String d = scanner.next();
+		for(Employee e: employees) {
+			if(e.getDepartment() == d) {
+				System.out.println(e);
+			}
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-}
