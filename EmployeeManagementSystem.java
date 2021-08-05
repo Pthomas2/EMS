@@ -22,14 +22,16 @@ public class EmployeeManagementSystem {
 			
 			while(x != 0) {
 try {
-	BufferedWriter bw = new BufferedWriter(new FileWriter("./resources/employees.txt"));
-	BufferedReader br = new BufferedReader(new FileReader("./resources/employees.txt"));
+	BufferedWriter bw = new BufferedWriter(new FileWriter("./Resources/employees.txt"));
+	BufferedReader br = new BufferedReader(new FileReader("./Resources/employees.txt"));
 	for(Employee e: employees) {
-		bw.write(e.toString() + "\n");
+		bw.write(e.getName() + ',' + e.getSalary() +','+ e.getDepartment() + "\n");
 	}
 	String s;
 	while((s = br.readLine()) != null) {
-		Employee employee = new Employee(s);
+		String[] tokens = s.split(",");
+		int i=Integer.parseInt(tokens[1]); 
+		Employee employee = new Employee(tokens[0],i,tokens[2]);
 		employees.add(employee);
 	};
 	
