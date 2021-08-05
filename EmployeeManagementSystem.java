@@ -91,6 +91,7 @@ try {
 		System.out.println("Enter an input for Employee Department");
 		String input3 = scanner.next();
 		employee.setDepartment(input3);
+		departments.add(input3);
 		System.out.println("Employee " + employee.getName() +" was created!");
 		employees.add(employee);
 		
