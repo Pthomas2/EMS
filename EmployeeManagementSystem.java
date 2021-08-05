@@ -167,9 +167,6 @@ try {
 	public static void listEmployeesFromASpecificDepartment() {
 		System.out.println("Enter the department you would like to list");
 		String d = scanner.next();
-		for(Employee e: employees) {
-			if(e.getDepartment() == d) {
-				System.out.println(e);
-			}
-		}
+		employees.stream().filter(e -> e.getDepartment()==d).forEach(System.out::println);;
+
 	}
